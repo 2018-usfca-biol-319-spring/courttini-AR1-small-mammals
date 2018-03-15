@@ -55,7 +55,7 @@ lintr::lint(filename = "Analysis.Rmd")
 
 Don't hesistate to ask questions on Piazza as you work!
 
-**NOTE:** There are some files in this repository that are used for automating testing. 
+**NOTE:** There are some files in this repository that are used for automating testing.
 
 ##### Infrastructure for Automated Software Testing
 
