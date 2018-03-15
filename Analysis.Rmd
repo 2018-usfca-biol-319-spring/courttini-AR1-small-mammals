@@ -4,9 +4,7 @@ author: "Don Francisco"
 date: "3/15/2018"
 bibliography: references.bib
 csl: ecology.csl
-output:
-  github_document: default
-
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -27,7 +25,7 @@ Add a number of code chunks in the Results section. These should read in, subset
 
 # Discussion
 
-Discuss the results you found. In the context of what you know about the site/sites and the predominant types of vegatation in those locations. Think also about the community dynamics of the mammal community at each of the sites, in the context of what you know about different types of species interactions, food webs, trophic transfer, etc.
+Discuss the results you found in the context of what you know about the site/sites and the predominant types of vegatation in those locations. Think also about the community dynamics of the mammal community at each of the sites, in the context of what you know about different types of species interactions, food webs, trophic transfer, etc.
 
 # Sources Cited
 
