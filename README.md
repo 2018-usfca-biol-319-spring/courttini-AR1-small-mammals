@@ -1,4 +1,4 @@
-# Analysis Report 1 on NEON small mammal dataset for BIOL319
+# Analysis Report 1 on NEON small mammal dataset for BIOL 319
 ## Due as a pull request on Monday, March 26, 2017 before 11:59 pm
 
 The **goals of this assignment** are twofold: 
