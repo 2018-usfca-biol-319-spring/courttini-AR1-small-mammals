@@ -21,7 +21,7 @@ Describe where the data came from, including how they were collected in the fiel
 
 # Results
 
-```{r load in needed packages}
+```{r load-in needed packages}
 #load packages needed for any analysis 
 library("knitr")
 library("dplyr")
@@ -30,7 +30,21 @@ library("ggplot2")
 ```
 
 ```{r load-in-dataset}
+# use readr package function read_csv to load in the small
+# mammals big dataset
+
 small_mammal_data <- readr::read_csv("data/raw_data/mam_pertrapnight.csv")
+```
+
+```{r summarize-capture-data}
+# we would like to get only thr rows that have captured animals in the trap 
+# and get the count of each sex in each site
+
+small_mammal_data %>% 
+  filter(trapStatus == "5 - capture") %>%
+  group_by(siteID, sex) %>%
+  tally()
+
 ```
 
 Add a number of code chunks in the Results section. These should read in, subset and plot the data as needed (no need to save any figures to pdf, since they will be put into the rendered document when you click 'knit'), and, for any hypotheses that you want to test, an appropriate statistical test. You should have at least 5 figures and/or tables in this section, which you use to test your hypotheses against the dataset.
