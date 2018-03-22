@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
+
+
 Delete this placeholder text, and replace it with your introduction text. You should include background on the NEON project including proper citations (e.g. [@thorpe2016introduction]), the sets of sites you are comparing, and other relevent background information related to your specific hypotheses. 
 
 # Methods
@@ -37,13 +39,16 @@ small_mammal_data <- readr::read_csv("data/raw_data/mam_pertrapnight.csv")
 ```
 
 ```{r summarize-capture-data}
-# we would like to get only thr rows that have captured animals in the trap 
+# we would like to get only thr rows that have captured animals in the trap
 # and get the count of each sex in each site
 
 small_mammal_data %>% 
   filter(trapStatus == "5 - capture") %>%
   group_by(siteID, sex) %>%
-  tally()
+  tally()```
+```
+
+```{r summarize-ca}
 
 ```
 
