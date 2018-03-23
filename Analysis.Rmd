@@ -51,12 +51,6 @@ small_mammal_data %>%
   spread(nlcdClass, n) %>%
   mutate(num_forest_types = sum((deciduousForest > 0) + (evergreenForest > 0), na.rm = TRUE)) %>%
   filter(num_forest_types == 2) 
-  
-small_mammal_data %>% 
-  filter(trapStatus == "5 - capture") %>%
-  filter(nlcdClass %in% c("deciduousForest", "evergreenForest")) %>%
-  group_by(siteID, sex, nlcdClass) %>%
-  tally()
 ```
 
 ```{r plot-boxplot-count}
