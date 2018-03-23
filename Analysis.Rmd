@@ -29,6 +29,7 @@ library("knitr")
 library("dplyr")
 library("readr")
 library("ggplot2")
+library("tidyr")
 ```
 
 ```{r load-in-dataset}
@@ -41,15 +42,46 @@ small_mammal_data <- readr::read_csv("data/raw_data/mam_pertrapnight.csv")
 ```{r summarize-capture-data}
 # we would like to get only thr rows that have captured animals in the trap
 # and get the count of each sex in each site
-
+  
+small_mammal_data %>%
+  filter(trapStatus == "5 - capture") %>%
+  filter(nlcdClass %in% c("deciduousForest", "evergreenForest")) %>%
+  group_by(siteID, sex, nlcdClass) %>%
+  tally() %>%
+  spread(nlcdClass, n) %>%
+  mutate(num_forest_types = sum((deciduousForest > 0) + (evergreenForest > 0), na.rm = TRUE)) %>%
+  filter(num_forest_types == 2) 
+  
 small_mammal_data %>% 
   filter(trapStatus == "5 - capture") %>%
-  group_by(siteID, sex) %>%
-  tally()```
+  filter(nlcdClass %in% c("deciduousForest", "evergreenForest")) %>%
+  group_by(siteID, sex, nlcdClass) %>%
+  tally()
 ```
 
-```{r summarize-ca}
+```{r plot-boxplot-count}
 
+harv_small_mammal_data %>%
+  
+```
+
+```{r summary-table-of-weight-in-class-example}
+# I want to make a summary table of the average weight and standard deviation
+# of all trapped rodents grouped by site, and excluding NA values 
+
+small_mammal_data %>%
+  filter(trapStatus == "5 - capture") %>%
+  group_by(siteID) %>%
+  summarise(mean_weight = mean(weight, na.rm = TRUE),
+            sd_weight = sd(weight, na.rm = TRUE)) %>%
+  filter(siteID %in% c("BART", "BLAN", "CLBJ")) %>%
+  ggplot(aes(x= siteID, y = mean_weight)) +
+  geom_col(fill = "dodger blue") + 
+  geom_errorbar(aes(x = siteID,
+                    ymin = mean_weight - sd_weight,
+                    ymax = mean_weight + sd_weight),
+                width = 0.2) + 
+  ggtitle("Average weight in grams of mammals at three NEON sites")
 ```
 
 Add a number of code chunks in the Results section. These should read in, subset and plot the data as needed (no need to save any figures to pdf, since they will be put into the rendered document when you click 'knit'), and, for any hypotheses that you want to test, an appropriate statistical test. You should have at least 5 figures and/or tables in this section, which you use to test your hypotheses against the dataset.
