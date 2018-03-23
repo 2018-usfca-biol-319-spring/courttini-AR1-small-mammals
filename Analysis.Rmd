@@ -65,11 +65,31 @@ ggplot(data = forests_filter_data,
 ```{r}
 
 ggplot(data = forests_filter_data,
+       aes(x = siteID,
+           y = deciduousForest)) + 
+  geom_boxplot()
+
+```
+
+
+```{r}
+
+ggplot(data = forests_filter_data,
        aes(x = sex,
            y = evergreenForest)) + 
   geom_boxplot()
 
 ```
+
+```{r}
+
+ggplot(data = forests_filter_data,
+       aes(x = siteID,
+           y = evergreenForest)) + 
+  geom_boxplot()
+
+```
+
 
 ```{r}
 small_mammal_data %>% 
