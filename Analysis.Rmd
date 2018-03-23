@@ -59,7 +59,9 @@ forests_filter_data <- small_mammal_data %>%
 ggplot(data = forests_filter_data,
        aes(x = sex,
            y = deciduousForest)) + 
-  geom_boxplot()
+  geom_boxplot() +
+  ggtitle("Amount of males and females in deciduous forest at five NEON sites") +
+  geom_col(fill = "red")
   
 ```
 
@@ -69,7 +71,9 @@ ggplot(data = forests_filter_data,
 ggplot(data = forests_filter_data,
        aes(x = siteID,
            y = deciduousForest)) + 
-  geom_boxplot()
+  geom_boxplot() +
+  ggtitle("Amount of small mammals in deciduous forest at five NEON sites") +
+  geom_col(fill = "red")
 
 ```
 
@@ -79,27 +83,57 @@ ggplot(data = forests_filter_data,
 ggplot(data = forests_filter_data,
        aes(x = sex,
            y = evergreenForest)) + 
-  geom_boxplot()
+  geom_boxplot() +
+  ggtitle("Amount of males and females in evergreen forest at five NEON sites") +
+  geom_col(fill = "dodger blue")
 
 ```
 
-```{r}
+```{r plot-boxplot-count4}
 # create boxplot between number of small mammals captured at each siteID in evergreen forest 
 
 ggplot(data = forests_filter_data,
        aes(x = siteID,
            y = evergreenForest)) + 
-  geom_boxplot()
+  geom_boxplot() +
+  ggtitle("Amount of small mammals in evergreen forest at five NEON sites") +
+  geom_col(fill = "dodger blue")
 
 ```
 
+```{r summarize-capture-data-and-weight}
+# filter out sites that contain both evergreen and deciduous forest 
+# and summarise the total weight 
 
-```{r}
-small_mammal_data %>% 
+weight_data <- small_mammal_data %>% 
   filter(trapStatus == "5 - capture") %>%
   filter(siteID %in% c("BART", "HARV", "JERC", "ORNL", "TALL")) %>%
   group_by(siteID, sex) %>%
   summarise(total_weight = sum(weight, na.rm = TRUE))
+```
+
+```{r plot-boxplot-weight-siteID}
+# create a boxplot with the 5 NEON siteIDs versus the weight 
+
+ggplot(data = weight_data,
+       aes(x = siteID,
+           y = total_weight)) +
+  geom_boxplot() +
+  ggtitle("Total weight of small mammals at 5 NEON sites") +
+  geom_col(fill = "dark green")
+
+```
+
+```{r plot-boxplot-weight-sex}
+# create a boxplot with the sex versus the weight 
+
+ggplot(data = weight_data,
+       aes(x = sex,
+           y = total_weight)) +
+  geom_boxplot() +
+  ggtitle("Total weight of small mammals of each sex") +
+  geom_col(fill = "dark green")
+
 ```
 
 
