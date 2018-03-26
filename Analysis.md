@@ -41,7 +41,7 @@ Results
 =======
 
 ``` r
-#load packages needed for any analysis 
+#load packages needed for any analysis
 library("knitr")
 library("dplyr")
 ```
@@ -88,103 +88,120 @@ small_mammal_data <- readr::read_csv("data/raw_data/mam_pertrapnight.csv")
     ## See spec(...) for full column specifications.
 
 ``` r
-# we would like to get only thr rows that have captured animals in the trap
-# and get the count of each sex in each site that are in decidous and evergreen forests
+# we would like to get only thr rows that have captured
+# animals in the trap and get the count of each
+# sex in each site that are in deciduous
+# and evergreen forests
   
 forests_filter_data <- small_mammal_data %>%
   filter(trapStatus == "5 - capture") %>%
-  filter(nlcdClass %in% c("deciduousForest", "evergreenForest")) %>%
+  filter(nlcdClass %in% c("deciduousForest", 
+                          "evergreenForest")) %>%
   group_by(siteID, sex, nlcdClass) %>%
   tally() %>%
   spread(nlcdClass, n) %>%
-  mutate(num_forest_types = sum((deciduousForest > 0) + (evergreenForest > 0), na.rm = TRUE)) %>%
+  mutate(num_forest_types = sum((deciduousForest > 0) +
+        (evergreenForest > 0), na.rm = TRUE)) %>%
   filter(num_forest_types == 2) 
 ```
 
 ``` r
-# create boxplot between number of individuals (sex) in deciduous forests 
+# create boxplot between number of individuals
+# (sex) in deciduous forests
 
 ggplot(data = forests_filter_data,
        aes(x = sex,
            y = deciduousForest)) + 
   geom_boxplot() +
-  ggtitle("Amount of males and females in deciduous forest at five NEON sites") +
+  ggtitle("Amount of males and females in
+          deciduous forest at five NEON sites") +
   geom_col(fill = "red")
 ```
 
 ![](Analysis_files/figure-markdown_github/plot-boxplot-count1-1.png)
 
 ``` r
-# create boxplot between number of small mammals captured at each siteID in deciduous forest 
+# create boxplot between number of small mammals
+# captured at each siteID in deciduous forest
 
 ggplot(data = forests_filter_data,
        aes(x = siteID,
            y = deciduousForest)) + 
   geom_boxplot() +
-  ggtitle("Amount of small mammals in deciduous forest at five NEON sites") +
+  ggtitle("Amount of small mammals in deciduous
+          forest at five NEON sites") +
   geom_col(fill = "red")
 ```
 
 ![](Analysis_files/figure-markdown_github/plot-boxplot-count2-1.png)
 
 ``` r
-# create boxplot between number of individuals (sex) in evergreen forests
+# create boxplot between number of individuals
+# (sex) in evergreen forests
 
 ggplot(data = forests_filter_data,
        aes(x = sex,
            y = evergreenForest)) + 
   geom_boxplot() +
-  ggtitle("Amount of males and females in evergreen forest at five NEON sites") +
+  ggtitle("Amount of males and females in
+          evergreen forest at five NEON sites") +
   geom_col(fill = "dodger blue")
 ```
 
 ![](Analysis_files/figure-markdown_github/plot-boxplot-count3-1.png)
 
 ``` r
-# create boxplot between number of small mammals captured at each siteID in evergreen forest 
+# create boxplot between number of small mammals
+# captured at each siteID in evergreen forest 
 
 ggplot(data = forests_filter_data,
        aes(x = siteID,
            y = evergreenForest)) + 
   geom_boxplot() +
-  ggtitle("Amount of small mammals in evergreen forest at five NEON sites") +
+  ggtitle("Amount of small mammals in evergreen
+          forest at five NEON sites") +
   geom_col(fill = "dodger blue")
 ```
 
 ![](Analysis_files/figure-markdown_github/plot-boxplot-count4-1.png)
 
 ``` r
-# filter out sites that contain both evergreen and deciduous forest 
+# filter out sites that contain both evergreen 
+# and deciduous forest 
 # and summarise the total weight 
 
 weight_data <- small_mammal_data %>% 
   filter(trapStatus == "5 - capture") %>%
-  filter(siteID %in% c("BART", "HARV", "JERC", "ORNL", "TALL")) %>%
+  filter(siteID %in% c("BART", "HARV", 
+                       "JERC","ORNL", "TALL")) %>%
   group_by(siteID, sex) %>%
   summarise(total_weight = sum(weight, na.rm = TRUE))
 ```
 
 ``` r
-# create a boxplot with the 5 NEON siteIDs versus the weight 
+# create a boxplot with the 5 NEON
+# siteIDs versus the weight
 
 ggplot(data = weight_data,
        aes(x = siteID,
            y = total_weight)) +
   geom_boxplot() +
-  ggtitle("Total weight of small mammals at 5 NEON sites") +
+  ggtitle("Total weight of small
+          mammals at 5 NEON sites") +
   geom_col(fill = "dark green")
 ```
 
 ![](Analysis_files/figure-markdown_github/plot-boxplot-weight-siteID-1.png)
 
 ``` r
-# create a boxplot with the sex versus the weight 
+# create a boxplot with the sex versus the weight
 
 ggplot(data = weight_data,
        aes(x = sex,
            y = total_weight)) +
   geom_boxplot() +
-  ggtitle("Total weight of small mammals of each sex") +
+  ggtitle("Total weight of small
+          mammals of each sex") +
   geom_col(fill = "dark green")
 ```
 
