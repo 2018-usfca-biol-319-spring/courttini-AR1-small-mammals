@@ -148,7 +148,7 @@ ggplot(data = forests_filter_data,
 
 ``` r
 # create boxplot between number of small mammals
-# captured at each siteID in evergreen forest 
+# captured at each siteID in evergreen forest
 
 ggplot(data = forests_filter_data,
        aes(x = siteID, y = evergreenForest)) +
@@ -161,9 +161,9 @@ ggplot(data = forests_filter_data,
 ![](Analysis_files/figure-markdown_github/plot-boxplot-count4-1.png)
 
 ``` r
-# filter out sites that contain both evergreen 
-# and deciduous forest 
-# and summarise the total weight 
+# filter out sites that contain both evergreen
+# and deciduous forest
+# and summarise the total weight
 
 weight_data <- small_mammal_data %>% 
   filter(trapStatus == "5 - capture") %>%
