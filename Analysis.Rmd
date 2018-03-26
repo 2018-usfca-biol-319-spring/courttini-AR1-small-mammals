@@ -47,7 +47,7 @@ The sites I will be focusing on are the Bartlett Experimental Forest (BART), Har
 # Results
 
 ```{r load-in needed packages}
-#load packages needed for any analysis 
+#load packages needed for any analysis
 library("knitr")
 library("dplyr")
 library("readr")
@@ -63,8 +63,10 @@ small_mammal_data <- readr::read_csv("data/raw_data/mam_pertrapnight.csv")
 ```
 
 ```{r summarize-capture-data}
-# we would like to get only thr rows that have captured animals in the trap
-# and get the count of each sex in each site that are in decidous and evergreen forests
+# we would like to get only thr rows that have captured
+# animals in the trap and get the count of each
+# sex in each site that are in decidous
+# and evergreen forests
   
 forests_filter_data <- small_mammal_data %>%
   filter(trapStatus == "5 - capture") %>%
