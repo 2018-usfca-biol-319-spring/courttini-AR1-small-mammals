@@ -1,5 +1,5 @@
 ---
-title: "Analysis Report 1: NEON Small Mammal Data"
+title: "Analysis Report 1: NEON Sites Analysis of Deciduous and Evergreen Forests"
 author: "Courtney Lopez"
 date: "3/15/2018"
 bibliography: references.bib
