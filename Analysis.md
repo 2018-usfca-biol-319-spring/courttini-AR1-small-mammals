@@ -95,14 +95,13 @@ small_mammal_data <- readr::read_csv("data/raw_data/mam_pertrapnight.csv")
   
 forests_filter_data <- small_mammal_data %>%
   filter(trapStatus == "5 - capture") %>%
-  filter(nlcdClass %in% c("deciduousForest", 
-                          "evergreenForest")) %>%
+  filter(nlcdClass %in% c("deciduousForest", "evergreenForest")) %>%
   group_by(siteID, sex, nlcdClass) %>%
   tally() %>%
   spread(nlcdClass, n) %>%
   mutate(num_forest_types = sum((deciduousForest > 0) +
         (evergreenForest > 0), na.rm = TRUE)) %>%
-  filter(num_forest_types == 2) 
+  filter(num_forest_types == 2)
 ```
 
 ``` r
@@ -110,8 +109,7 @@ forests_filter_data <- small_mammal_data %>%
 # (sex) in deciduous forests
 
 ggplot(data = forests_filter_data,
-       aes(x = sex,
-           y = deciduousForest)) + 
+       aes(x = sex, y = deciduousForest)) +
   geom_boxplot() +
   ggtitle("Amount of males and females in
           deciduous forest at five NEON sites") +
