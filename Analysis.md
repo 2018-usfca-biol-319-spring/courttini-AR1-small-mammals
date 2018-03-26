@@ -123,8 +123,7 @@ ggplot(data = forests_filter_data,
 # captured at each siteID in deciduous forest
 
 ggplot(data = forests_filter_data,
-       aes(x = siteID,
-           y = deciduousForest)) + 
+       aes(x = siteID, y = deciduousForest)) +
   geom_boxplot() +
   ggtitle("Amount of small mammals in deciduous
           forest at five NEON sites") +
@@ -138,8 +137,7 @@ ggplot(data = forests_filter_data,
 # (sex) in evergreen forests
 
 ggplot(data = forests_filter_data,
-       aes(x = sex,
-           y = evergreenForest)) + 
+       aes(x = sex, y = evergreenForest)) +
   geom_boxplot() +
   ggtitle("Amount of males and females in
           evergreen forest at five NEON sites") +
@@ -153,8 +151,7 @@ ggplot(data = forests_filter_data,
 # captured at each siteID in evergreen forest 
 
 ggplot(data = forests_filter_data,
-       aes(x = siteID,
-           y = evergreenForest)) + 
+       aes(x = siteID, y = evergreenForest)) +
   geom_boxplot() +
   ggtitle("Amount of small mammals in evergreen
           forest at five NEON sites") +
@@ -181,8 +178,7 @@ weight_data <- small_mammal_data %>%
 # siteIDs versus the weight
 
 ggplot(data = weight_data,
-       aes(x = siteID,
-           y = total_weight)) +
+       aes(x = siteID, y = total_weight)) +
   geom_boxplot() +
   ggtitle("Total weight of small
           mammals at 5 NEON sites") +
@@ -195,8 +191,7 @@ ggplot(data = weight_data,
 # create a boxplot with the sex versus the weight
 
 ggplot(data = weight_data,
-       aes(x = sex,
-           y = total_weight)) +
+       aes(x = sex, y = total_weight)) +
   geom_boxplot() +
   ggtitle("Total weight of small
           mammals of each sex") +
