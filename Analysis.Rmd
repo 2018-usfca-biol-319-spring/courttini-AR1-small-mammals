@@ -132,10 +132,10 @@ ggplot(data = forests_filter_data,
 # and deciduous forest
 # and summarise the total weight
 
-weight_data <- small_mammal_data %>% 
+weight_data <- small_mammal_data %>%
   filter(trapStatus == "5 - capture") %>%
-  filter(siteID %in% c("BART", "HARV", 
-                       "JERC","ORNL", "TALL")) %>%
+  filter(siteID %in% c("BART", "HARV",
+                       "JERC", "ORNL", "TALL")) %>%
   group_by(siteID, sex) %>%
   summarise(total_weight = sum(weight, na.rm = TRUE))
 ```
